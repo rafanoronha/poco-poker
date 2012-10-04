@@ -10,27 +10,31 @@ namespace PocoPoker.Showdown
     {
         public bool FitsMyCategory(Game game)
         {
+            var fits = false;
+
             var firstCardSuit = game.Cards.First().Suit;
-            
-            var sameSuit = game.Cards.All(c =>
+
+            var sameSuit = game.Cards.All(c => 
                 firstCardSuit.Equals(c.Suit));
 
-            var hasAce = game.Cards.Any(c =>
-                Rank.ACE.Equals(c.Rank));
+            if (sameSuit)
+            {
+                Func<Card, Rank, bool> rankCheck = (c, r) => r.Equals(c.Rank);
 
-            var hasKing = game.Cards.Any(c =>
-                Rank.KING.Equals(c.Rank));
+                var rankChecks = new Func<Card, bool>[] {
+                    (c) => rankCheck(c, Rank.ACE),
+                    (c) => rankCheck(c, Rank.KING),
+                    (c) => rankCheck(c, Rank.QUEEN),
+                    (c) => rankCheck(c, Rank.JACK),
+                    (c) => rankCheck(c, Rank.TEN)
+                };
+ 
+                fits = game.Cards.All(card =>
+                    rankChecks.Any(check =>
+                        check(card)));
+            }
 
-            var hasQueen = game.Cards.Any(c =>
-                Rank.QUEEN.Equals(c.Rank));
-
-            var hasJack = game.Cards.Any(c =>
-                Rank.JACK.Equals(c.Rank));
-
-            var hasTen = game.Cards.Any(c =>
-                Rank.TEN.Equals(c.Rank));
-
-            return sameSuit && hasAce && hasKing && hasQueen && hasJack && hasTen;
+            return fits;
         }
 
         public GameCategory Category
