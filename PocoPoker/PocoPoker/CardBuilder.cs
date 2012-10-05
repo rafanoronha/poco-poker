@@ -20,7 +20,6 @@ namespace PocoPoker.Showdown
             return new Card(this.rank, Suit.HEARTHS);
         }
 
-
         public static CardBuilder Ace()
         {
             return new CardBuilder(Rank.ACE);
@@ -50,5 +49,13 @@ namespace PocoPoker.Showdown
         {
             return new CardBuilder(Rank.NINE);
         }
+
+        public static Card RankUp(Card card)
+        {
+            int rank = (int)card.Rank;
+            var up = (Rank)(rank + 1);
+            return new Card(up, card.Suit);
+        }
+
     }
 }

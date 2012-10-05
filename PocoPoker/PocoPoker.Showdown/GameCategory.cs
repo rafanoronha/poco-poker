@@ -7,6 +7,7 @@ namespace PocoPoker.Showdown
 {
     public enum GameCategory
     {
-        ROYAL_FLUSH
+        ROYAL_FLUSH,
+        STRAIGHT_FLUSH
     }
 }

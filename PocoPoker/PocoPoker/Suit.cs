@@ -7,6 +7,9 @@ namespace PocoPoker.Showdown
 {
     public enum Suit
     {
-        HEARTHS
+        CLUBS,
+        DIAMONDS,
+        HEARTHS,
+        SPADES
     }
 }

@@ -7,11 +7,18 @@ namespace PocoPoker.Showdown
 {
     public enum Rank
     {
-        ACE,
-        KING,
-        QUEEN,
-        JACK,
+        TWO = 2,
+        THREE,
+        FOUR,
+        FIVE,
+        SIX,
+        SEVEN,
+        EIGHT,
+        NINE,
         TEN,
-        NINE
+        JACK,
+        QUEEN,
+        KING,
+        ACE
     }
 }

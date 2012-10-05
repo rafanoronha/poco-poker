@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PocoPoker.Showdown
 {
-    public class RoyalFlush : IGameEvaluation
+    public class StraightFlush : IGameEvaluation
     {
         public bool FitsMyCategory(Game game)
         {
@@ -19,14 +18,18 @@ namespace PocoPoker.Showdown
 
             if (sameSuit)
             {
-                Func<Card, Rank, bool> rankCheck = (c, r) => r.Equals(c.Rank);
+                int maxRank = game.Cards.Max(c =>
+                    (int)c.Rank);
+
+                Func<Card, Rank, bool> rankCheck = (c, r) =>
+                    r.Equals(c.Rank);
 
                 var rankChecks = new Func<Card, bool>[] {
-                    (c) => rankCheck(c, Rank.ACE),
-                    (c) => rankCheck(c, Rank.KING),
-                    (c) => rankCheck(c, Rank.QUEEN),
-                    (c) => rankCheck(c, Rank.JACK),
-                    (c) => rankCheck(c, Rank.TEN)
+                    (c) => rankCheck(c, (Rank)maxRank),
+                    (c) => rankCheck(c, (Rank)maxRank-1),
+                    (c) => rankCheck(c, (Rank)maxRank-2),
+                    (c) => rankCheck(c, (Rank)maxRank-3),
+                    (c) => rankCheck(c, (Rank)maxRank-4),
                 };
 
                 fits = game.Cards.All(card =>
@@ -39,7 +42,7 @@ namespace PocoPoker.Showdown
 
         public GameCategory Category
         {
-            get { return GameCategory.ROYAL_FLUSH; }
+            get { return GameCategory.STRAIGHT_FLUSH; }
         }
     }
 }
