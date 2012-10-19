@@ -1,0 +1,2 @@
+== Poco Poker
+Having fun while coding a c# poker library.
