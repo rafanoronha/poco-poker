@@ -12,26 +12,17 @@ namespace PocoPoker.Showdown
         {
             var fits = false;
 
-            var firstCardSuit = game.Cards.First().Suit;
-
-            var sameSuit = game.Cards.All(c =>
-                firstCardSuit.Equals(c.Suit));
-
-            if (sameSuit)
+            if (game.SameSuit())
             {
-                Func<Card, Rank, bool> rankCheck = (c, r) => r.Equals(c.Rank);
-
                 var rankChecks = new Func<Card, bool>[] {
-                    (c) => rankCheck(c, Rank.ACE),
-                    (c) => rankCheck(c, Rank.KING),
-                    (c) => rankCheck(c, Rank.QUEEN),
-                    (c) => rankCheck(c, Rank.JACK),
-                    (c) => rankCheck(c, Rank.TEN)
+                    Fun.IsAce,
+                    Fun.IsKing,
+                    Fun.IsQueen,
+                    Fun.IsJack,
+                    Fun.IsTen
                 };
 
-                fits = game.Cards.All(card =>
-                    rankChecks.Any(check =>
-                        check(card)));
+                fits = Fun.PassAny<Card>()(game.Cards, rankChecks);
             }
 
             return fits;

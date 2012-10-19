@@ -14,6 +14,11 @@ namespace PocoPoker.Showdown
             this.cards = new List<Card>(new Card[] { a, b, c, d, e });
         }
 
+        public bool SameSuit()
+        {
+            return Fun.SameSuit(this.cards);
+        }
+
         public IEnumerable<Card> Cards
         {
             get
