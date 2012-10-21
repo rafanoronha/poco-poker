@@ -13,7 +13,46 @@ namespace PocoPoker.Showdown.UnitTest
             public void Hearths()
             {
                 // ARRANGE
-                var game = HearthsRoyalFlush();
+                var game = RoyalFlushGameBuilder.HearthsRoyalFlush();
+
+                // ACT
+                var actual = new RoyalFlush().FitsMyCategory(game);
+
+                // ASSERT
+                Assert.IsTrue(actual);
+            }
+
+            [TestMethod]
+            public void Spades()
+            {
+                // ARRANGE
+                var game = RoyalFlushGameBuilder.SpadesRoyalFlush();
+
+                // ACT
+                var actual = new RoyalFlush().FitsMyCategory(game);
+
+                // ASSERT
+                Assert.IsTrue(actual);
+            }
+
+            [TestMethod]
+            public void Clubs()
+            {
+                // ARRANGE
+                var game = RoyalFlushGameBuilder.ClubsRoyalFlush();
+
+                // ACT
+                var actual = new RoyalFlush().FitsMyCategory(game);
+
+                // ASSERT
+                Assert.IsTrue(actual);
+            }
+
+            [TestMethod]
+            public void Diamonds()
+            {
+                // ARRANGE
+                var game = RoyalFlushGameBuilder.DiamondsRoyalFlush();
 
                 // ACT
                 var actual = new RoyalFlush().FitsMyCategory(game);
@@ -30,7 +69,7 @@ namespace PocoPoker.Showdown.UnitTest
             [TestMethod]
             public void NineInsteadOfTen()
             {
-                var royalFlush = HearthsRoyalFlush();
+                var royalFlush = RoyalFlushGameBuilder.HearthsRoyalFlush();
                 
                 var game = GameBuilder.Game(royalFlush).SwapLastCardWith(
                     CardBuilder.Nine().Hearths());
@@ -41,16 +80,6 @@ namespace PocoPoker.Showdown.UnitTest
                 // ASSERT
                 Assert.IsFalse(actual);                
             }
-        }
-
-        private static Game HearthsRoyalFlush()
-        {
-            return new Game(
-                CardBuilder.Ace().Hearths(),
-                CardBuilder.King().Hearths(),
-                CardBuilder.Queen().Hearths(),
-                CardBuilder.Jack().Hearths(),
-                CardBuilder.Ten().Hearths());
         }
 
     }

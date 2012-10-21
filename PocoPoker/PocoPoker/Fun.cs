@@ -45,5 +45,9 @@ namespace PocoPoker
                         test(arg)));
         }
 
+        public static Func<Card, Suit, Card> SwapSuit =
+            (card, suit) =>
+                new Card(card.Rank, suit);
+                    
     }
 }

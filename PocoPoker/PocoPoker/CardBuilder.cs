@@ -20,6 +20,21 @@ namespace PocoPoker
             return new Card(this.rank, Suit.HEARTHS);
         }
 
+        public Card Clubs()
+        {
+            return new Card(this.rank, Suit.CLUBS);
+        }
+
+        public Card Diamonds()
+        {
+            return new Card(this.rank, Suit.DIAMONDS);
+        }
+
+        public Card Spades()
+        {
+            return new Card(this.rank, Suit.SPADES);
+        }
+
         public static CardBuilder Ace()
         {
             return new CardBuilder(Rank.ACE);
@@ -48,6 +63,21 @@ namespace PocoPoker
         public static CardBuilder Nine()
         {
             return new CardBuilder(Rank.NINE);
+        }
+
+        public static CardBuilder Four()
+        {
+            return new CardBuilder(Rank.FOUR);
+        }
+
+        public static CardBuilder Three()
+        {
+            return new CardBuilder(Rank.THREE);
+        }
+
+        public static CardBuilder Two()
+        {
+            return new CardBuilder(Rank.TWO);
         }
 
         public static Card RankUp(Card card)

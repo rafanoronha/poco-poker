@@ -26,10 +26,19 @@ namespace PocoPoker.Showdown
                 card);
         }
 
+        public Game SwapSuitWith(Suit suit)
+        {
+            var cards = this.hand.Cards.Select(c =>
+                Fun.SwapSuit(c, suit)).ToArray();
+            
+            return new Game(cards[0], cards[1], cards[2], cards[3], cards[4]);
+        }
+
         public static GameBuilder Game(Game hand)
         {
             return new GameBuilder(hand);
         }
+
     }
 
     public class StraightFlushGameBuilder
@@ -65,6 +74,46 @@ namespace PocoPoker.Showdown
         public static StraightFlushGameBuilder Diamonds()
         {
             return new StraightFlushGameBuilder(Suit.DIAMONDS);
+        }
+
+        public static StraightFlushGameBuilder Spades()
+        {
+            return new StraightFlushGameBuilder(Suit.SPADES);
+        }
+
+    }
+
+    public class RoyalFlushGameBuilder
+    {
+        public static Game ClubsRoyalFlush()
+        {
+            return RoyalFlush(Suit.CLUBS);
+        }
+
+        public static Game SpadesRoyalFlush()
+        {
+            return RoyalFlush(Suit.SPADES);
+        }
+
+        public  static Game DiamondsRoyalFlush()
+        {
+            return RoyalFlush(Suit.DIAMONDS);
+        }
+
+        public static Game HearthsRoyalFlush()
+        {
+            return new Game(
+                CardBuilder.Ace().Hearths(),
+                CardBuilder.King().Hearths(),
+                CardBuilder.Queen().Hearths(),
+                CardBuilder.Jack().Hearths(),
+                CardBuilder.Ten().Hearths());
+        }
+
+        private static Game RoyalFlush(Suit suit)
+        {
+            return GameBuilder.Game(HearthsRoyalFlush())
+                .SwapSuitWith(suit);
         }
 
     }
