@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PocoPoker.Showdown.UnitTest
@@ -13,7 +14,7 @@ namespace PocoPoker.Showdown.UnitTest
             public void Hearths()
             {
                 // ARRANGE
-                var game = RoyalFlushGameBuilder.HearthsRoyalFlush();
+                var game = Helper.HearthsRoyalFlush();
 
                 // ACT
                 var actual = new RoyalFlush().FitsMyCategory(game);
@@ -26,7 +27,12 @@ namespace PocoPoker.Showdown.UnitTest
             public void Spades()
             {
                 // ARRANGE
-                var game = RoyalFlushGameBuilder.SpadesRoyalFlush();
+                var hearthsRoyalFlushCards = Helper.HearthsRoyalFlush().Cards;
+                var cards = hearthsRoyalFlushCards.Select(
+                    c =>
+                        new Card(c.Rank, Suit.SPADES)).ToArray();
+
+                var game = new Game(cards[0], cards[1], cards[2], cards[3], cards[4]);
 
                 // ACT
                 var actual = new RoyalFlush().FitsMyCategory(game);
@@ -39,7 +45,12 @@ namespace PocoPoker.Showdown.UnitTest
             public void Clubs()
             {
                 // ARRANGE
-                var game = RoyalFlushGameBuilder.ClubsRoyalFlush();
+                var hearthsRoyalFlushCards = Helper.HearthsRoyalFlush().Cards;
+                var cards = hearthsRoyalFlushCards.Select(
+                    c =>
+                        new Card(c.Rank, Suit.CLUBS)).ToArray();
+
+                var game = new Game(cards[0], cards[1], cards[2], cards[3], cards[4]);
 
                 // ACT
                 var actual = new RoyalFlush().FitsMyCategory(game);
@@ -52,7 +63,12 @@ namespace PocoPoker.Showdown.UnitTest
             public void Diamonds()
             {
                 // ARRANGE
-                var game = RoyalFlushGameBuilder.DiamondsRoyalFlush();
+                var hearthsRoyalFlushCards = Helper.HearthsRoyalFlush().Cards;
+                var cards = hearthsRoyalFlushCards.Select(
+                    c =>
+                        new Card(c.Rank, Suit.DIAMONDS)).ToArray();
+
+                var game = new Game(cards[0], cards[1], cards[2], cards[3], cards[4]);
 
                 // ACT
                 var actual = new RoyalFlush().FitsMyCategory(game);
@@ -69,7 +85,7 @@ namespace PocoPoker.Showdown.UnitTest
             [TestMethod]
             public void NineInsteadOfTen()
             {
-                var royalFlush = RoyalFlushGameBuilder.HearthsRoyalFlush();
+                var royalFlush = Helper.HearthsRoyalFlush();
                 
                 var game = GameBuilder.Game(royalFlush).SwapLastCardWith(
                     CardBuilder.Nine().Hearths());
@@ -79,6 +95,19 @@ namespace PocoPoker.Showdown.UnitTest
 
                 // ASSERT
                 Assert.IsFalse(actual);                
+            }
+        }
+
+        class Helper
+        {
+            public static Game HearthsRoyalFlush()
+            {
+                return new Game(
+                    CardBuilder.Ace().Hearths(),
+                    CardBuilder.King().Hearths(),
+                    CardBuilder.Queen().Hearths(),
+                    CardBuilder.Jack().Hearths(),
+                    CardBuilder.Ten().Hearths());
             }
         }
 

@@ -83,39 +83,4 @@ namespace PocoPoker.Showdown
 
     }
 
-    public class RoyalFlushGameBuilder
-    {
-        public static Game ClubsRoyalFlush()
-        {
-            return RoyalFlush(Suit.CLUBS);
-        }
-
-        public static Game SpadesRoyalFlush()
-        {
-            return RoyalFlush(Suit.SPADES);
-        }
-
-        public  static Game DiamondsRoyalFlush()
-        {
-            return RoyalFlush(Suit.DIAMONDS);
-        }
-
-        public static Game HearthsRoyalFlush()
-        {
-            return new Game(
-                CardBuilder.Ace().Hearths(),
-                CardBuilder.King().Hearths(),
-                CardBuilder.Queen().Hearths(),
-                CardBuilder.Jack().Hearths(),
-                CardBuilder.Ten().Hearths());
-        }
-
-        private static Game RoyalFlush(Suit suit)
-        {
-            return GameBuilder.Game(HearthsRoyalFlush())
-                .SwapSuitWith(suit);
-        }
-
-    }
-
 }
