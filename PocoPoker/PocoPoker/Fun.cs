@@ -48,6 +48,14 @@ namespace PocoPoker
         public static Func<Card, Suit, Card> SwapSuit =
             (card, suit) =>
                 new Card(card.Rank, suit);
-                    
+
+        public static bool IsStraight(IEnumerable<Card> cards) {
+            return cards.OrderByDescending(
+                card => card.Rank).Count() ==
+                cards.TakeWhile((c, i) =>
+                    i == 0 ||
+                    c.Rank == 1 + cards.ElementAt(i - 1).Rank).Count();
+        }
+
     }
 }
