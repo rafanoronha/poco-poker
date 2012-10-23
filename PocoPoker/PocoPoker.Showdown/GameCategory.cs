@@ -11,6 +11,7 @@ namespace PocoPoker.Showdown
         STRAIGHT_FLUSH,
         FOUR_OF_A_KIND,
         FULL_HOUSE,
-        FLUSH
+        FLUSH,
+        STRAIGHT
     }
 }

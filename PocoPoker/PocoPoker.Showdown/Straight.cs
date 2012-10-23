@@ -8,14 +8,14 @@ namespace PocoPoker.Showdown
 {
     public class Straight : IGameEvaluation
     {
-        public bool FitsMyCategory(Game game)
+        public virtual bool FitsMyCategory(Game game)
         {
             return Fun.IsStraight(game.Cards);
         }
 
-        public GameCategory Category
+        public virtual GameCategory Category
         {
-            get { return GameCategory.FOUR_OF_A_KIND; }
+            get { return GameCategory.STRAIGHT; }
         }
     }
 }
