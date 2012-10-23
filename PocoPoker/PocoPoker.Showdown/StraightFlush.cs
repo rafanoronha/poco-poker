@@ -5,15 +5,14 @@ using System.Text;
 
 namespace PocoPoker.Showdown
 {
-    public class StraightFlush : Straight
+    public class StraightFlush : IGameEvaluation
     {
-        public override bool FitsMyCategory(Game game)
+        public bool FitsMyCategory(Game game)
         {
-            var straight = base.FitsMyCategory(game);
-            return straight && game.SameSuit();
+            return Fun.IsStraight(game.Cards) && game.SameSuit();
         }
 
-        public override GameCategory Category
+        public GameCategory Category
         {
             get { return GameCategory.STRAIGHT_FLUSH; }
         }

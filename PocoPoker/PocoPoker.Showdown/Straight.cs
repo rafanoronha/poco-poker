@@ -8,12 +8,12 @@ namespace PocoPoker.Showdown
 {
     public class Straight : IGameEvaluation
     {
-        public virtual bool FitsMyCategory(Game game)
+        public bool FitsMyCategory(Game game)
         {
             return Fun.IsStraight(game.Cards);
         }
 
-        public virtual GameCategory Category
+        public GameCategory Category
         {
             get { return GameCategory.STRAIGHT; }
         }
