@@ -4,16 +4,26 @@ using System.Text;
 
 namespace PocoPoker.Showdown
 {
-    public class Flush : IGameEvaluation
+    public class Flush : GameEvaluationBase
     {
-        public bool FitsMyCategory(Game game)
+        public override IGameEvaluationResult Evaluate(Game game)
         {
-            return game.SameSuit();
+            IGameEvaluationResult result;
+            if (game.SameSuit())
+            {
+                result = Success(Category, game.Cards);
+            }
+            else
+            {
+                result = Failed();
+            }
+            return result;
         }
 
-        public GameCategory Category
+        GameCategory Category
         {
             get { return GameCategory.FLUSH; }
         }
+
     }
 }

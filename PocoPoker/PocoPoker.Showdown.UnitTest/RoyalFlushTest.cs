@@ -17,10 +17,11 @@ namespace PocoPoker.Showdown.UnitTest
                 var game = Helper.HearthsRoyalFlush();
 
                 // ACT
-                var actual = new RoyalFlush().FitsMyCategory(game);
+                var result = new RoyalFlush().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
 
             [TestMethod]
@@ -35,10 +36,11 @@ namespace PocoPoker.Showdown.UnitTest
                 var game = new Game(cards[0], cards[1], cards[2], cards[3], cards[4]);
 
                 // ACT
-                var actual = new RoyalFlush().FitsMyCategory(game);
+                var result = new RoyalFlush().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
 
             [TestMethod]
@@ -53,10 +55,11 @@ namespace PocoPoker.Showdown.UnitTest
                 var game = new Game(cards[0], cards[1], cards[2], cards[3], cards[4]);
 
                 // ACT
-                var actual = new RoyalFlush().FitsMyCategory(game);
+                var result = new RoyalFlush().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
 
             [TestMethod]
@@ -71,10 +74,11 @@ namespace PocoPoker.Showdown.UnitTest
                 var game = new Game(cards[0], cards[1], cards[2], cards[3], cards[4]);
 
                 // ACT
-                var actual = new RoyalFlush().FitsMyCategory(game);
+                var result = new RoyalFlush().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
 
         }
@@ -91,10 +95,10 @@ namespace PocoPoker.Showdown.UnitTest
                     CardBuilder.Nine().Hearths());
 
                 // ACT
-                var actual = new RoyalFlush().FitsMyCategory(game);
+                var result = new RoyalFlush().Evaluate(game);
 
                 // ASSERT
-                Assert.IsFalse(actual);                
+                Assert.IsFalse(result.Success());
             }
         }
 

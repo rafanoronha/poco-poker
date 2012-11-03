@@ -6,14 +6,24 @@ using System.Threading.Tasks;
 
 namespace PocoPoker.Showdown
 {
-    public class Straight : IGameEvaluation
+    public class Straight : GameEvaluationBase
     {
-        public bool FitsMyCategory(Game game)
+        public override IGameEvaluationResult Evaluate(Game game)
         {
-            return Fun.IsStraight(game.Cards);
+            IGameEvaluationResult result;
+
+            if (Fun.IsStraight(game.Cards))
+            {
+                result = Success(Category, game.Cards);
+            }
+            else
+            {
+                result = Failed();
+            }
+            return result;
         }
 
-        public GameCategory Category
+        GameCategory Category
         {
             get { return GameCategory.STRAIGHT; }
         }

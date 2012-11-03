@@ -8,7 +8,7 @@ namespace PocoPoker.Showdown
 {
     public class GameEvaluationChain
     {
-        IEnumerator<IGameEvaluation> evaluations;
+        IEnumerator<GameEvaluationCommand> evaluations;
 
         public GameEvaluationChain(IEnumerable<IGameEvaluation> evaluations)
         {
@@ -17,12 +17,12 @@ namespace PocoPoker.Showdown
                 throw new ArgumentNullException("evaluations");
             }
 
-            this.evaluations = evaluations.GetEnumerator();
+            this.evaluations = evaluations.Select((x) => new GameEvaluationCommand(x)).GetEnumerator();
         }
 
         public void Evaluate(Game game)
         {
-            while (!evaluations.Current.FitsMyCategory(game))
+            while (!evaluations.Current.Evaluate(game))
             {
                 evaluations.MoveNext();
             }
@@ -31,15 +31,23 @@ namespace PocoPoker.Showdown
 
     public class GameEvaluationCommand
     {
-        public bool Evaluate(Game game, IGameEvaluation gameEvaluation)
+        IGameEvaluation gameEvaluation;
+
+        public GameEvaluationCommand(IGameEvaluation gameEvaluation)
         {
-            var fits = gameEvaluation.FitsMyCategory(game);
-            if (fits)
+            this.gameEvaluation = gameEvaluation;
+        }
+
+        public bool Evaluate(Game game)
+        {
+            var result = gameEvaluation.Evaluate(game);
+            var success = result.Success();
+            if (success)
             {
-                game.EvaluationResult(gameEvaluation.Category);
+                game.EvaluationResult(result);
             }
 
-            return fits;
+            return success;
         }
     }
 }

@@ -6,23 +6,34 @@ using System.Threading.Tasks;
 
 namespace PocoPoker.Showdown
 {
-    public class FullHouse : IGameEvaluation
+    public class FullHouse : GameEvaluationBase
     {
-        public bool FitsMyCategory(Game game)
+        public override IGameEvaluationResult Evaluate(Game game)
         {
+            IGameEvaluationResult result;
+
             var cardsByRank =
                 from c in game.Cards
                 group c by c.Rank;
 
             // 5 cards for which there are
             // 2 ranks and 3 cards for one of those ranks
-            return 2 == cardsByRank.Count() &&
+            var fullHouse = 2 == cardsByRank.Count() &&
                 cardsByRank.Any(g =>
                     3 == g.Count());
 
+            if (fullHouse)
+            {
+                result = Success(Category, game.Cards);
+            }
+            else
+            {
+                result = Failed();
+            }
+            return result;
         }
 
-        public GameCategory Category
+        GameCategory Category
         {
             get { return GameCategory.FULL_HOUSE; }
         }

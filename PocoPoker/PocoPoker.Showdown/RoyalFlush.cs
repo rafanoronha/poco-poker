@@ -6,29 +6,32 @@ using System.Threading.Tasks;
 
 namespace PocoPoker.Showdown
 {
-    public class RoyalFlush : IGameEvaluation
+    public class RoyalFlush : GameEvaluationBase
     {
-        public bool FitsMyCategory(Game game)
+        public override IGameEvaluationResult Evaluate(Game game)
         {
-            var fits = false;
+            IGameEvaluationResult result;
 
-            if (game.SameSuit())
+            var rankChecks = new Func<Card, bool>[] {
+                Fun.IsAce,
+                Fun.IsKing,
+                Fun.IsQueen,
+                Fun.IsJack,
+                Fun.IsTen
+            };
+
+            if (game.SameSuit() && Fun.PassAny<Card>()(game.Cards, rankChecks))
             {
-                var rankChecks = new Func<Card, bool>[] {
-                    Fun.IsAce,
-                    Fun.IsKing,
-                    Fun.IsQueen,
-                    Fun.IsJack,
-                    Fun.IsTen
-                };
-
-                fits = Fun.PassAny<Card>()(game.Cards, rankChecks);
+                result = Success(Category, game.Cards);
             }
-
-            return fits;
+            else
+            {
+                result = Failed();
+            }
+            return result;
         }
 
-        public GameCategory Category
+        GameCategory Category
         {
             get { return GameCategory.ROYAL_FLUSH; }
         }

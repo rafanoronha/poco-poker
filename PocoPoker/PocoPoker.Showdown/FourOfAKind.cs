@@ -6,17 +6,29 @@ using System.Threading.Tasks;
 
 namespace PocoPoker.Showdown
 {
-    public class FourOfAKind : IGameEvaluation
+    public class FourOfAKind : GameEvaluationBase
     {
-        public bool FitsMyCategory(Game game)
+        public override IGameEvaluationResult Evaluate(Game game)
         {
-            return (from c in game.Cards
-             group c by c.Rank).Any(
+            IGameEvaluationResult result;
+
+            var fourOfAKind = (from c in game.Cards
+                    group c by c.Rank).Where(
                 g =>
                     4 == g.Count());
+
+            if (1 == fourOfAKind.Count())
+            {
+                result = Success(Category, fourOfAKind.First().ToList());
+            }
+            else
+            {
+                result = Failed();
+            }
+            return result;
         }
 
-        public GameCategory Category
+        GameCategory Category
         {
             get { return GameCategory.FOUR_OF_A_KIND; }
         }

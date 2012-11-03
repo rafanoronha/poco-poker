@@ -19,10 +19,11 @@ namespace PocoPoker.Showdown.UnitTest
                 var game = AcesFullOfKingsGame();
 
                 // ACT
-                var actual = new FullHouse().FitsMyCategory(game);
+                var result = new FullHouse().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
             
             [TestMethod]
@@ -55,10 +56,11 @@ namespace PocoPoker.Showdown.UnitTest
                     fives[2]);
 
                 // ACT
-                var actual = new FullHouse().FitsMyCategory(game);
+                var result = new FullHouse().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
 
             private Game AcesFullOfKingsGame()

@@ -18,10 +18,11 @@ namespace PocoPoker.Showdown.UnitTest
                 var game = Helper.HearthsFlush();
 
                 // ACT
-                var actual = new Flush().FitsMyCategory(game);
+                var result = new Flush().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
 
         }
@@ -43,10 +44,10 @@ namespace PocoPoker.Showdown.UnitTest
                     new Card(cards[4].Rank, Suit.CLUBS));
 
                 // ACT
-                var actual = new Flush().FitsMyCategory(game);
+                var result = new Flush().Evaluate(game);
 
                 // ASSERT
-                Assert.IsFalse(actual);
+                Assert.IsFalse(result.Success());
             }
         }
 

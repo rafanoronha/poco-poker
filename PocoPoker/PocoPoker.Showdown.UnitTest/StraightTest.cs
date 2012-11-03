@@ -26,10 +26,11 @@ namespace PocoPoker.Showdown.UnitTest
                     new Card(cards[4].Rank, Suit.CLUBS));
 
                 // ACT
-                var actual = new Straight().FitsMyCategory(game);
+                var result = new Straight().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
 
             [TestMethod]
@@ -47,10 +48,11 @@ namespace PocoPoker.Showdown.UnitTest
                     new Card(cards[4].Rank, Suit.CLUBS));
 
                 // ACT
-                var actual = new Straight().FitsMyCategory(game);
+                var result = new Straight().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
 
         }
@@ -70,10 +72,10 @@ namespace PocoPoker.Showdown.UnitTest
                     CardBuilder.Four().Clubs());
 
                 // ACT
-                var actual = new Straight().FitsMyCategory(game);
+                var result = new Straight().Evaluate(game);
 
                 // ASSERT
-                Assert.IsFalse(actual);
+                Assert.IsFalse(result.Success());
             }
         }
 

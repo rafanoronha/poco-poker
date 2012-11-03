@@ -18,10 +18,11 @@ namespace PocoPoker.Showdown.UnitTest
                     .From(Rank.FIVE).To(Rank.NINE);
 
                 // ACT
-                var actual = new StraightFlush().FitsMyCategory(game);
+                var result = new StraightFlush().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
 
             [TestMethod]
@@ -32,10 +33,11 @@ namespace PocoPoker.Showdown.UnitTest
                     .From(Rank.TWO).To(Rank.SIX);
 
                 // ACT
-                var actual = new StraightFlush().FitsMyCategory(game);
+                var result = new StraightFlush().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                Assert.AreSame(game.Cards, result.UsedCards);
             }
 
         }
@@ -55,12 +57,11 @@ namespace PocoPoker.Showdown.UnitTest
                     CardBuilder.Four().Hearths());
 
                 // ACT
-                var actual = new StraightFlush().FitsMyCategory(game);
+                var result = new StraightFlush().Evaluate(game);
 
                 // ASSERT
-                Assert.IsFalse(actual);
+                Assert.IsFalse(result.Success());
             }
         }
-
     }
 }

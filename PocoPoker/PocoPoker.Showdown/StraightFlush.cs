@@ -5,14 +5,23 @@ using System.Text;
 
 namespace PocoPoker.Showdown
 {
-    public class StraightFlush : IGameEvaluation
+    public class StraightFlush : GameEvaluationBase
     {
-        public bool FitsMyCategory(Game game)
+        public override IGameEvaluationResult Evaluate(Game game)
         {
-            return Fun.IsStraight(game.Cards) && game.SameSuit();
+            IGameEvaluationResult result;
+            if (Fun.IsStraight(game.Cards) && game.SameSuit())
+            {
+                result = Success(Category, game.Cards);
+            }
+            else
+            {
+                result = Failed();
+            }
+            return result;
         }
 
-        public GameCategory Category
+        GameCategory Category
         {
             get { return GameCategory.STRAIGHT_FLUSH; }
         }

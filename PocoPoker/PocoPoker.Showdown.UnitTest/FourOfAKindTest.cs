@@ -19,10 +19,11 @@ namespace PocoPoker.Showdown.UnitTest
                 var game = FourAcesAndANine();
 
                 // ACT
-                var actual = new FourOfAKind().FitsMyCategory(game);
+                var result = new FourOfAKind().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                CollectionAssert.AreEquivalent(game.Cards.Where(c => Rank.ACE == c.Rank).ToList(), result.UsedCards.ToList());
             }
             
             [TestMethod]
@@ -45,10 +46,11 @@ namespace PocoPoker.Showdown.UnitTest
                     CardBuilder.Two().Clubs());
 
                 // ACT
-                var actual = new FourOfAKind().FitsMyCategory(game);
+                var result = new FourOfAKind().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                CollectionAssert.AreEquivalent(fourSevens.ToList(), result.UsedCards.ToList());
             }
 
             [TestMethod]
@@ -71,10 +73,11 @@ namespace PocoPoker.Showdown.UnitTest
                     CardBuilder.Nine().Spades());
 
                 // ACT
-                var actual = new FourOfAKind().FitsMyCategory(game);
+                var result = new FourOfAKind().Evaluate(game);
 
                 // ASSERT
-                Assert.IsTrue(actual);
+                Assert.IsTrue(result.Success());
+                CollectionAssert.AreEquivalent(fourEights.ToList(), result.UsedCards.ToList());
             }
 
             private Game FourAcesAndANine()
