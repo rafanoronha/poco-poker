@@ -22,10 +22,12 @@ namespace PocoPoker.Showdown
 
         public void Evaluate(Game game)
         {
-            while (!evaluations.Current.Evaluate(game))
+            bool hasNext;
+            do
             {
-                evaluations.MoveNext();
+                hasNext = evaluations.MoveNext();
             }
+            while (hasNext && !evaluations.Current.Evaluate(game));
         }
     }
 
