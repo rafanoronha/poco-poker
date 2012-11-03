@@ -40,12 +40,12 @@ namespace PocoPoker.Showdown
     {
         public override GameCategory Category
         {
-            get { throw new NotImplementedException(); }
+            get { throw new NotSupportedException(); }
         }
 
         public override IEnumerable<Card> UsedCards
         {
-            get { throw new NotImplementedException(); }
+            get { throw new NotSupportedException(); }
         }
     }
 }
