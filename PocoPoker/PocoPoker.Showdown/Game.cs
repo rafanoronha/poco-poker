@@ -25,7 +25,7 @@ namespace PocoPoker.Showdown
             UsedCards = result.UsedCards;
         }
 
-        public GameCategory Category { get; private set; }
+        public GameCategory? Category { get; private set; }
         public IEnumerable<Card> UsedCards { get; private set; }
 
         public IEnumerable<Card> Cards
