@@ -19,6 +19,11 @@ namespace PocoPoker.Showdown
             return Fun.SameSuit(this.cards);
         }
 
+        public void EvaluationResult(GameCategory gameCategory)
+        {
+            Category = gameCategory;
+        }
+
         public IEnumerable<Card> Cards
         {
             get
@@ -26,6 +31,8 @@ namespace PocoPoker.Showdown
                 return this.cards.AsEnumerable();
             }
         }
+
+        public GameCategory Category { get; private set; }
 
     }
 }

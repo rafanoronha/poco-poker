@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChainOfResponsibility.cs" />
+    <Compile Include="GameEvaluator.cs" />
     <Compile Include="Straight.cs" />
     <Compile Include="Flush.cs" />
     <Compile Include="FullHouse.cs" />
