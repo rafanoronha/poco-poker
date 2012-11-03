@@ -65,6 +65,26 @@ namespace PocoPoker
             return new CardBuilder(Rank.NINE);
         }
 
+        public static CardBuilder Eight()
+        {
+            return new CardBuilder(Rank.EIGHT);
+        }
+
+        public static CardBuilder Seven()
+        {
+            return new CardBuilder(Rank.SEVEN);
+        }
+
+        public static CardBuilder Six()
+        {
+            return new CardBuilder(Rank.SIX);
+        }
+
+        public static CardBuilder Five()
+        {
+            return new CardBuilder(Rank.FIVE);
+        }
+
         public static CardBuilder Four()
         {
             return new CardBuilder(Rank.FOUR);
