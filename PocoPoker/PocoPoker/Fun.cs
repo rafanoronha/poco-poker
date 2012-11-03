@@ -49,12 +49,15 @@ namespace PocoPoker
             (card, suit) =>
                 new Card(card.Rank, suit);
 
-        public static bool IsStraight(IEnumerable<Card> cards) {
-            return cards.OrderByDescending(
-                card => card.Rank).Count() ==
-                cards.TakeWhile((c, i) =>
+        public static bool IsStraight(IEnumerable<Card> cards)
+        {
+            var orderedCards = cards.OrderBy(
+                card => (int)card.Rank);
+
+            return orderedCards.Count() ==
+                orderedCards.TakeWhile((c, i) =>
                     i == 0 ||
-                    c.Rank == 1 + cards.ElementAt(i - 1).Rank).Count();
+                    c.Rank == 1 + orderedCards.ElementAt(i - 1).Rank).Count();
         }
 
     }
