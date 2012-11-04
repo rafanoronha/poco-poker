@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PocoPoker.Showdown.IntegrationTest
 {
     [TestClass]
-    public class GameEvaluatorTest
+    public class GameEvaluationsTest
     {
         [TestMethod]
         public void RoyalFlush()
