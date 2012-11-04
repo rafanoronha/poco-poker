@@ -8,7 +8,7 @@ namespace PocoPoker.Showdown
 {
     public class Straight : GameEvaluationBase
     {
-        public override IGameEvaluationResult Evaluate(Game game)
+        public override IGameEvaluationResult Evaluate(IGame game)
         {
             IGameEvaluationResult result;
 

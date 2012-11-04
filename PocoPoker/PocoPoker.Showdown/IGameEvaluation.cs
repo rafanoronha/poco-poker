@@ -8,12 +8,12 @@ namespace PocoPoker.Showdown
 {
     public interface IGameEvaluation
     {
-        IGameEvaluationResult Evaluate(Game game);
+        IGameEvaluationResult Evaluate(IGame game);
     }
 
     public abstract class GameEvaluationBase : IGameEvaluation
     {
-        public abstract IGameEvaluationResult Evaluate(Game game);
+        public abstract IGameEvaluationResult Evaluate(IGame game);
 
         public IGameEvaluationResult Failed()
         {

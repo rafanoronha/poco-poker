@@ -20,7 +20,7 @@ namespace PocoPoker.Showdown
             this.evaluations = evaluations.Select((x) => new GameEvaluationCommand(x)).GetEnumerator();
         }
 
-        public void Evaluate(Game game)
+        public void Evaluate(IGame game)
         {
             bool hasNext;
             do
@@ -40,7 +40,7 @@ namespace PocoPoker.Showdown
             this.gameEvaluation = gameEvaluation;
         }
 
-        public bool Evaluate(Game game)
+        public bool Evaluate(IGame game)
         {
             var result = gameEvaluation.Evaluate(game);
             var success = result.Success();

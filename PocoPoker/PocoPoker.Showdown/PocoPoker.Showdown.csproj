@@ -42,6 +42,7 @@
     <Compile Include="ChainOfResponsibility.cs" />
     <Compile Include="GameEvaluationResult.cs" />
     <Compile Include="GameEvaluator.cs" />
+    <Compile Include="IGame.cs" />
     <Compile Include="Straight.cs" />
     <Compile Include="Flush.cs" />
     <Compile Include="FullHouse.cs" />

@@ -7,7 +7,7 @@ namespace PocoPoker.Showdown
 {
     public class StraightFlush : GameEvaluationBase
     {
-        public override IGameEvaluationResult Evaluate(Game game)
+        public override IGameEvaluationResult Evaluate(IGame game)
         {
             IGameEvaluationResult result;
             if (Fun.IsStraight(game.Cards) && game.SameSuit())

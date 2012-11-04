@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PocoPoker.Showdown
 {
-    public class Game
+    public class Game : IGame
     {
         private List<Card> cards;
 
