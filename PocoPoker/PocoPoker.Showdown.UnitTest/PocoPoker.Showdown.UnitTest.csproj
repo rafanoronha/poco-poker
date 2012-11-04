@@ -58,6 +58,7 @@
     <Compile Include="StraightFlushTest.cs" />
     <Compile Include="RoyalFlushTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GameEvaluationCommandTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PocoPoker.Showdown\PocoPoker.Showdown.csproj">
