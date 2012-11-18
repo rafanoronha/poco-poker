@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocoPoker", "PocoPoker\Poco
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocoPoker.Showdown.IntegrationTest", "PocoPoker.Showdown.IntegrationTest\PocoPoker.Showdown.IntegrationTest.csproj", "{CA7B34FC-6DD4-4702-ACBD-DBCC7372B379}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocoPoker.Betting", "PocoPoker.Betting\PocoPoker.Betting.csproj", "{7FAF7111-1137-4B5A-B666-536C3124C3A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{CA7B34FC-6DD4-4702-ACBD-DBCC7372B379}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA7B34FC-6DD4-4702-ACBD-DBCC7372B379}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA7B34FC-6DD4-4702-ACBD-DBCC7372B379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FAF7111-1137-4B5A-B666-536C3124C3A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FAF7111-1137-4B5A-B666-536C3124C3A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FAF7111-1137-4B5A-B666-536C3124C3A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FAF7111-1137-4B5A-B666-536C3124C3A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
