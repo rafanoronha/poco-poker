@@ -1,2 +1,6 @@
 == Poco Poker
-Having fun while coding a c# poker library.
+Having fun while coding a brand new open source c# poker library.
+
+== Contribute
+You are welcome.
+Pick an issue, have fun writing code and submit your pull request.
