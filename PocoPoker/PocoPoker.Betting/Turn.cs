@@ -8,5 +8,11 @@ namespace PocoPoker.Betting
 {
     public class Turn
     {
+        public Turn(Position position)
+        {
+            Position = position;
+        }
+
+        public Position Position { get; private set; }
     }
 }

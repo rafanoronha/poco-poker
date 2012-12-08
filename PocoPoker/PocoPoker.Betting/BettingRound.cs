@@ -11,10 +11,15 @@ namespace PocoPoker.Betting
         public BettingRound(Positions positions)
         {
             Positions = positions;
+            CurrentTurn = new Turn(Positions.UnderTheGun);
         }
 
         public void PlaceAction(Action action)
         {
+            if (CurrentTurn.Position != action.PlayerPosition)
+            {
+                throw new OutOfTurnException();
+            }
         }
 
         public Turn CurrentTurn { get; private set; }

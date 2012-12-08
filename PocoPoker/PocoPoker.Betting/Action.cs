@@ -12,7 +12,17 @@ namespace PocoPoker.Betting
 
         public static Action Call(Position playerPosition)
         {
-            var action = new Call();
+            return NewAction<Call>(playerPosition);
+        }
+
+        public static Action Fold(Position playerPosition)
+        {
+            return NewAction<Fold>(playerPosition);
+        }
+
+        static Action NewAction<A>(Position playerPosition) where A : Action
+        {
+            var action = Activator.CreateInstance<A>();
             action.PlayerPosition = playerPosition;
             return action;
         }
