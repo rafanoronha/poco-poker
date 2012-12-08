@@ -24,6 +24,18 @@ namespace PocoPoker.Betting
 
     public class Positions
     {
+        public Positions(
+            Position dealer,
+            Position sb,
+            Position bb,
+            Position utg)
+        {
+            Dealer = dealer;
+            SmallBlind = sb;
+            BigBlind = bb;
+            UnderTheGun = utg;
+        }
+
         public Position Dealer { get; private set; }
         public Position SmallBlind { get; private set; }
         public Position BigBlind { get; private set; }
@@ -34,6 +46,11 @@ namespace PocoPoker.Betting
 
     public class Position
     {
+        public Position(Player player)
+        {
+            Player = player;
+        }
+
         public Player Player { get; private set; }
         public Position NextPosition { get; private set; }
     }
