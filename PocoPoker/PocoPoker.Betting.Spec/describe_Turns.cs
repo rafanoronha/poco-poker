@@ -8,7 +8,7 @@ using PocoPoker.Betting;
 
 namespace PocoPoker.Betting.Spec
 {
-    class preflop : nspec
+    class describe_Turns : nspec
     {
         void given_a_4_players_preflop_betting_round()
         {
@@ -28,7 +28,7 @@ namespace PocoPoker.Betting.Spec
                 round = new BettingRound(positions);
             };
 
-            context["given under the gun is in turn"] = () =>
+            context["given betting round just started"] = () =>
             {
                 it["under the gun may call"] = () =>
                     round.PlaceAction(Action.Call(utg));
@@ -42,7 +42,7 @@ namespace PocoPoker.Betting.Spec
                 it["big blind must not act"] = expect<OutOfTurnException>(() =>
                     round.PlaceAction(Action.Fold(bb)));
 
-                context["given utg acted and now dealer is in turn"] = () =>
+                context["given utg acted"] = () =>
                 {
                     before = () => round.PlaceAction(Action.Call(utg));
 

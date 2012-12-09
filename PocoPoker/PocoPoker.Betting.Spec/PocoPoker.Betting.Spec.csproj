@@ -45,14 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebuggerShim.cs" />
-    <Compile Include="preflop.cs" />
+    <Compile Include="describe_Turns.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="specwatchr-usage.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PocoPoker.Betting\PocoPoker.Betting.csproj">
