@@ -37,7 +37,7 @@ namespace PocoPoker.Betting.Spec
                     round.PlaceAction(Action.Fold(dealer)));
 
                 it["small blind must not act"] = expect<OutOfTurnException>(() =>
-                    round.PlaceAction(Action.Fold(sb)));
+                    round.PlaceAction(Action.Call(sb)));
 
                 it["big blind must not act"] = expect<OutOfTurnException>(() =>
                     round.PlaceAction(Action.Fold(bb)));
@@ -53,7 +53,7 @@ namespace PocoPoker.Betting.Spec
                         round.PlaceAction(Action.Fold(utg)));
 
                     it["small blind must not act"] = expect<OutOfTurnException>(() =>
-                        round.PlaceAction(Action.Fold(sb)));
+                        round.PlaceAction(Action.Call(sb)));
 
                     it["big blind must not act"] = expect<OutOfTurnException>(() =>
                         round.PlaceAction(Action.Fold(bb)));
@@ -69,10 +69,10 @@ namespace PocoPoker.Betting.Spec
                             round.PlaceAction(Action.Fold(bb)));
 
                         it["under the gun must not act"] = expect<OutOfTurnException>(() =>
-                            round.PlaceAction(Action.Fold(utg)));
+                            round.PlaceAction(Action.Call(utg)));
 
                         it["dealer must not act"] = expect<OutOfTurnException>(() =>
-                            round.PlaceAction(Action.Call(dealer)));
+                            round.PlaceAction(Action.Fold(dealer)));
 
                         context["given small blind acted"] = () =>
                         {
@@ -85,10 +85,10 @@ namespace PocoPoker.Betting.Spec
                                 round.PlaceAction(Action.Fold(utg)));
 
                             it["dealer must not act"] = expect<OutOfTurnException>(() =>
-                                round.PlaceAction(Action.Fold(dealer)));
+                                round.PlaceAction(Action.Call(dealer)));
 
                             it["small blind must not act"] = expect<OutOfTurnException>(() =>
-                                round.PlaceAction(Action.Call(sb)));
+                                round.PlaceAction(Action.Fold(sb)));
                         };
                     };
                 };
