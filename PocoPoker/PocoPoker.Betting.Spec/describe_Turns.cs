@@ -30,7 +30,7 @@ namespace PocoPoker.Betting.Spec
 
             context["given betting round just started"] = () =>
             {
-                it["under the gun may call"] = () =>
+                it["under the gun may act"] = () =>
                     round.PlaceAction(Action.Call(utg));
 
                 it["dealer must not act"] = expect<OutOfTurnException>(() =>
@@ -42,11 +42,11 @@ namespace PocoPoker.Betting.Spec
                 it["big blind must not act"] = expect<OutOfTurnException>(() =>
                     round.PlaceAction(Action.Fold(bb)));
 
-                context["given utg acted"] = () =>
+                context["given under the gun acted"] = () =>
                 {
                     before = () => round.PlaceAction(Action.Call(utg));
 
-                    it["dealer may call"] = () =>
+                    it["dealer may act"] = () =>
                         round.PlaceAction(Action.Call(dealer));
 
                     it["under the gun must not act"] = expect<OutOfTurnException>(() =>
@@ -57,6 +57,40 @@ namespace PocoPoker.Betting.Spec
 
                     it["big blind must not act"] = expect<OutOfTurnException>(() =>
                         round.PlaceAction(Action.Fold(bb)));
+
+                    context["given dealer acted"] = () =>
+                    {
+                        before = () => round.PlaceAction(Action.Call(dealer));
+
+                        it["small blind may act"] = () =>
+                            round.PlaceAction(Action.Call(sb));
+
+                        it["big blind must not act"] = expect<OutOfTurnException>(() =>
+                            round.PlaceAction(Action.Fold(bb)));
+
+                        it["under the gun must not act"] = expect<OutOfTurnException>(() =>
+                            round.PlaceAction(Action.Fold(utg)));
+
+                        it["dealer must not act"] = expect<OutOfTurnException>(() =>
+                            round.PlaceAction(Action.Call(dealer)));
+
+                        context["given small blind acted"] = () =>
+                        {
+                            before = () => round.PlaceAction(Action.Call(sb));
+
+                            it["big blind may act"] = () =>
+                                round.PlaceAction(Action.Call(bb));
+
+                            it["under the gun must not act"] = expect<OutOfTurnException>(() =>
+                                round.PlaceAction(Action.Fold(utg)));
+
+                            it["dealer must not act"] = expect<OutOfTurnException>(() =>
+                                round.PlaceAction(Action.Fold(dealer)));
+
+                            it["small blind must not act"] = expect<OutOfTurnException>(() =>
+                                round.PlaceAction(Action.Call(sb)));
+                        };
+                    };
                 };
             };
 
