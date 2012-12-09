@@ -20,6 +20,7 @@ namespace PocoPoker.Betting
             {
                 throw new OutOfTurnException();
             }
+            CurrentTurn = new Turn(CurrentTurn.Position.NextPosition);
         }
 
         public Turn CurrentTurn { get; private set; }
@@ -39,6 +40,11 @@ namespace PocoPoker.Betting
             SmallBlind = sb;
             BigBlind = bb;
             UnderTheGun = utg;
+
+            Dealer.NextPosition = SmallBlind;
+            SmallBlind.NextPosition = BigBlind;
+            BigBlind.NextPosition = UnderTheGun;
+            UnderTheGun.NextPosition = Dealer;
         }
 
         public Position Dealer { get; private set; }
@@ -57,7 +63,7 @@ namespace PocoPoker.Betting
         }
 
         public Player Player { get; private set; }
-        public Position NextPosition { get; private set; }
+        public Position NextPosition { get; internal set; }
     }
 
 }
