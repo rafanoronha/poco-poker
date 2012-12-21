@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="describe_FearfulBigBlind.cs" />
     <Compile Include="DebuggerShim.cs" />
     <Compile Include="describe_Turns.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,6 +8,11 @@ namespace PocoPoker.Betting
 {
     public abstract class Action
     {
+        public bool IsFold()
+        {
+            return GetType().IsAssignableFrom(typeof(Fold));
+        }
+
         public Position PlayerPosition { get; private set; }
 
         public static Action Call(Position playerPosition)

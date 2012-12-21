@@ -25,7 +25,7 @@ namespace PocoPoker.Betting.Spec
                 dealer = new Position(playerStub);
 
                 var positions = new Positions(dealer, sb, bb, utg);
-                round = new BettingRound(positions);
+                round = new BettingRound(new Pot(), positions);
             };
 
             context["given betting round just started"] = () =>
